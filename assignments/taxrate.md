@@ -44,6 +44,6 @@ If it prints out any info, something is wrong!
 
 ### Extra Credit
 
-A significatn fraction of your time doing real-world software work involves reading about software libraries and learning how to use them.
+A significant fraction of your time doing real-world software work involves reading about software libraries and learning how to use them.
 Read about [Python's `doctest` library](https://docs.python.org/3.5/library/doctest.html).
 Then explain what the above Unix command and `testem.py` are doing to test your code in `taxes.py`.
