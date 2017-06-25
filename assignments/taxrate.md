@@ -3,7 +3,7 @@
 
 ### Problem 1: `tax2017(income)`
 
-In module `taxes.py`, write a function `tax2017(income)` that takes taxable income and returns the amount of Federal tax.
+Create a new module, `taxes.py`, in the `assignments` directory and write a function `tax2017(income)` that takes taxable income and returns the amount of Federal tax.
 Use the U.S. Federal Tax Brackets for 2017 (from: https://taxfoundation.org/2017-tax-brackets/):
 
 Rate    |Taxable Income Bracket  |Tax Owed
@@ -29,3 +29,21 @@ E.g.
 >>> taxes.tax2017(50000)
 8238.75
 ```
+
+#### Test your code
+
+To thoroughly test your code, run this command from a shell in the `assignments` directory.
+Be sure your `taxes.py` file is saved in the `assignments` directory.
+
+```bash
+python3 -m doctest testem.py
+```
+
+As with many Unix commands, it should print out nothing if the tests run successfully.
+If it prints out any info, something is wrong!
+
+### Extra Credit
+
+A significatn fraction of your time doing real-world software work involves reading about software libraries and learning how to use them.
+Read about [Python's `doctest` library](https://docs.python.org/3.5/library/doctest.html).
+Then explain what the above Unix command and `testem.py` are doing to test your code in `taxes.py`.
