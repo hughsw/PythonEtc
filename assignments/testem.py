@@ -34,7 +34,7 @@ def _tax2017_2(income):
     Test values near the breakpoints
 
     >>> _tax2017_2(0)
-    0
+    0.0
     0.1
 
     >>> _tax2017_2(9325)
@@ -68,8 +68,10 @@ def _tax2017_2(income):
     121505.65
     """
 
-    import taxes
+    from taxes import tax2017
+    def taxit(x): return float(tax2017(x))
+
     if income >= 1:
-        print(round(taxes.tax2017(income - 1), 2))
-    print(round(taxes.tax2017(income), 2))
-    print(round(taxes.tax2017(income + 1), 2))
+        print(round(taxit(income - 1), 2))
+    print(round(taxit(income), 2))
+    print(round(taxit(income + 1), 2))
