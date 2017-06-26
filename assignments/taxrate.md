@@ -8,7 +8,7 @@ Use the U.S. Federal Tax Brackets for 2017 (from: https://taxfoundation.org/2017
 
 Rate    |Taxable Income Bracket  |Tax Owed
 :---    |:---------------------  |:--------
-10%     |$0 to $9,325            |10% of Taxable Income
+10%     |$0 to $9,325            |$0.00 plus 10% of Taxable Income
 15%     |$9,325 to $37,950       |$932.50 plus 15% of the excess over $9325
 25%     |$37,950 to $91,900      |$5,226.25 plus 25% of the excess over $37,950
 28%     |$91,900 to $191,650     |$18,713.75 plus 28% of the excess over $91,900
@@ -47,3 +47,36 @@ If it prints out any info, something is wrong!
 A significant fraction of your time doing real-world software work involves reading about software libraries and learning how to use them.
 Read about [Python's `doctest` library](https://docs.python.org/3.5/library/doctest.html).
 Then explain what the above Unix command and `testem.py` are doing to test your code in `taxes.py`.
+
+
+### Problem 2: `bracket_bases(tax_table)`
+
+The tax table above does not say where the dollar amounts on the left of the Tax Owed column come from.
+These tax-bracket-bases can be derived from the first two columns of values in the table, plus a little knowledge or reasoning about the progressive tax algorithm.
+
+The first two columns of values in the table above can be represented in Python in a static database:
+```python
+TAX_BRACKETS_2017 = (
+    (0.10,   0),
+    (0.15,   9325),
+    (0.25,   37950),
+    (0.28,   91900),
+    (0.33,   191650),
+    (0.35,   416700),
+    (0.3960, 418400),
+    )
+```
+
+Continuing in `taxes.py`, include this declaration of
+TAX_BRACKETS_2017 and write a Python function,
+`bracket_bases(tax_table)`, that takes the `TAX_BRACKETS_2017` table
+(or any similarly structured progressive tax table), and returns a
+list of pairs of the Rate and the corresponding Tax Owed bracket
+basis.
+
+E.g.
+```
+>>> import taxes
+>>> taxes.bracket_bases(taxes.TAX_BRACKETS_2017)
+[ (0.10, 0.0), (0.15, 932.50), (0.25, 5226.25), (0.28, 18713.75), (0.33, 46643.75), (0.35, 120910.25), (0.3960, 121505.25) ]
+```
