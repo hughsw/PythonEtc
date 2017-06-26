@@ -114,7 +114,11 @@ $ git branch -a
 # - asterisk * marks commits
 # - branches grow bottom to top
 $ git log --pretty=format:"%h%d %an   %s" --graph --all
-* ab5dc44 (origin/hsw-assignments, hsw-assignments) Hugh Secker-Walker   hsw first assignment
+* 6d4e699 (HEAD -> master, origin/master, origin/HEAD) Hugh Secker-Walker   [ASSIGNMENTS] Add some output in GitSteps-1.md
+* 0664266 Hugh Secker-Walker   [ASSIGNMENTS] Add GitSteps-1.md, some activity with Git
+| * ab5dc44 (origin/hsw-assignments, hsw-assignments) Hugh Secker-Walker   hsw first assignment
+|/
+* 2000080 (accounting-service) Gruen   Adding my solution for calculating taxes owed
 * e1fd7a2 Hugh Secker-Walker   [ASSIGNMENTS] Fix typo in taxrate.md
 * 30dadaf Hugh Secker-Walker   [ASSIGNMENTS] Add doctest to test the tax bracket assignment, add extra credit
 * 47f81a7 Hugh Secker-Walker   [ASSIGNMENTS] Add tax bracket assignment
