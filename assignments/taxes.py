@@ -1,4 +1,16 @@
+TAX_BRACKETS_2017 = (
+    (0.10,   0),
+    (0.15,   9325),
+    (0.25,   37950),
+    (0.28,   91900),
+    (0.33,   191650),
+    (0.35,   416700),
+    (0.3960, 418400),
+    )
+
 def tax2017(income):
+	assert income >= 0, str(income)
+	
 	if income <= 9325:
 		taxes_owed = 0.1 * income
 	elif income > 9325 and income <= 37950:
@@ -14,3 +26,10 @@ def tax2017(income):
 	else:
 		taxes_owed = (income - 418400) * 0.396 + 121505.25
 	return taxes_owed
+
+def bracket_bases(tax_table):
+	tax_table_list = []
+	for row in tax_table:
+		(rate, income) = row
+		tax_table_list.append((rate, tax2017(income)))
+	return tax_table_list
