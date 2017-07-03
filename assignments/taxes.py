@@ -27,9 +27,15 @@ def tax2017(income):
 		taxes_owed = (income - 418400) * 0.396 + 121505.25
 	return taxes_owed
 
+
 def bracket_bases(tax_table):
 	tax_table_list = []
-	for row in tax_table:
-		(rate, income) = row
-		tax_table_list.append((rate, tax2017(income)))
+	tax = 0
+	prev_thres = 0
+	prev_rate = 0
+	for rate, threshold in tax_table:
+		tax += prev_rate * (threshold - prev_thres)
+		prev_thres = threshold
+		prev_rate = rate
+		tax_table_list.append((rate, tax))
 	return tax_table_list
