@@ -56,6 +56,9 @@ def tax2017i(brackets, income):
 def tax2017r(brackets, income):
 	assert income >= 0, str(income)
 
-	for rate, threshold in reversed(brackets):
-		if income >= threshold:
-			return (income - threshold) * rate + tax2017(threshold)
+	if income > 0:
+		for rate, threshold in reversed(brackets):
+			if income > threshold:
+				return (income - threshold) * rate + tax2017r(brackets, threshold)
+	else:
+		return 0
