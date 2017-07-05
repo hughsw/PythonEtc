@@ -41,21 +41,21 @@ def bracket_bases(tax_table):
 	return tax_table_list
 
 
-def tax2017i(income):
+def tax2017i(brackets, income):
 	assert income >= 0, str(income)
 	
 	untaxed_income = income
 	tax = 0
-	for rate, threshold in reversed(TAX_BRACKETS_2017):
+	for rate, threshold in reversed(brackets):
 		if untaxed_income >= threshold:
 			tax += (untaxed_income - threshold) * rate
 			untaxed_income = threshold
 	return tax
 
 
-def tax2017r(income):
+def tax2017r(brackets, income):
 	assert income >= 0, str(income)
 
-	for rate, threshold in reversed(TAX_BRACKETS_2017):
+	for rate, threshold in reversed(brackets):
 		if income >= threshold:
 			return (income - threshold) * rate + tax2017(threshold)
