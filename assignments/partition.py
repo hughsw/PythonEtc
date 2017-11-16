@@ -10,6 +10,8 @@ def partition1(coin_types, amount):
     0
     >>> partition1([3], -10)
     0
+    >>> partition1((), 0)
+    0
 
     Basic pattern
     >>> partition1((1,10), 19)
@@ -55,6 +57,7 @@ def partition1(coin_types, amount):
         # Add the core of your implementation here!
         elif amount == 0:
         	return 1
-
         else:
         	return partition1r(items[1:], amount) + partition1r(items, amount - items[0])
+
+    return partition1r(coin_types, amount)
