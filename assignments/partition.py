@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def partition1(coin_types, amount):
     """Given `coin_types`, a set of unique integer values to choose from (with
     replacement), and `amount` a positive integer, return the number
@@ -32,6 +34,9 @@ def partition1(coin_types, amount):
     >>> partition1(coin_types, 63)
     77
 
+    >>> partition1(coin_types, 963)
+    1815250
+
     Hints of scaling properties
     >>> for i in range(99, 106):
     ...   i, partition1(coin_types, i)
@@ -48,16 +53,39 @@ def partition1(coin_types, amount):
     # ensure unique entries
     items = tuple(coin_types)
     assert len(set(items)) == len(items), str(coin_types)
-
+    # Create cache
+    partition_cache = {}
     def partition1r(items, amount):
-        # implement the edge behavior (and recursion stops)
+        
+        # Set-up cache
+        cache_value = tuple(items), amount
+        
+        # Implement the edge behavior (and recursion stops)
         if not items or amount < 0:
-        	return 0
-
-        # Add the core of your implementation here!
-        elif amount == 0:
-        	return 1
+            return 0
+        
+        # Test to see if value is in cache
+        elif cache_value in partition_cache:
+            return partition_cache[cache_value]
+        
+        # Base case when next coin will make exact change
+        elif amount - items[0] == 0:
+            return 1
+        
         else:
-        	return partition1r(items[1:], amount) + partition1r(items, amount - items[0])
+        	result = partition1r(items[1:], amount) + partition1r(items, amount - items[0])
+        
+        # cache result to dictionary
+        partition_cache[cache_value] = result
+        return result
 
     return partition1r(coin_types, amount)
+
+def main(args):
+    amount, *items = map(int, args)
+    count = partition1(items, amount)
+    print(count)
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv[1:]))
